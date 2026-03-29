@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверь себя: тест KPI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            min-height: 100vh;
+        }
+        .scenario {
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 1.3em;
+            line-height: 1.6;
+            backdrop-filter: blur(10px);
+        }
+        .question {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        .options {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .option {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2em;
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+        }
+        .option:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(5px);
+        }
+        .option.selected {
+            background: rgba(255,255,255,0.4);
+            border-color: #90EE90;
+        }
+        .feedback {
+            display: none;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            margin-top: 20px;
+            animation: fadeIn 0.5s;
+        }
+        .correct {
+            background: rgba(144,238,144,0.8);
+            border: 3px solid #32CD32;
+            color: #155724;
+        }
+        .incorrect {
+            background: rgba(255,182,193,0.8);
+            border: 3px solid #DC143C;
+            color: #721C24;
+        }
+        .next-btn {
+            background: white;
+            color: #FF6B35;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: none;
+        }
+        .next-btn:hover {
+            transform: translateY(-2px);
+        }
+        .submit-btn {
+            background: #90EE90;
+            color: #155724;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            margin: 20px auto;
+            display: block;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 600px) {
+            .scenario { font-size: 1.1em; }
+            .question { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scenario">
+        <strong>Ситуация:</strong> Час пик, очередь растёт, на мониторах SOS — <span style="color:#FF4444">красный</span> (время ожидания >3 мин). Кассиры работают, повара стараются, гости недовольны. Ты — Менеджер смены. Что делаешь?
+    </div>
+    
+    <div class="question">Правильный первый шаг?</div>
+    
+    <div class="options">
+        <div class="option" data-correct="false">1. Успокою гостей, пообещаю скидку</div>
+        <div class="option" data-correct="true">2. Переставлю сотрудников: +1 на кассу, сам встану на сборку</div>
+        <div class="option" data-correct="false">3. Позвоню директору, спрошу что делать</div>
+    </div>
+    
+    <button class="submit-btn" onclick="checkAnswer()">Проверить</button>
+    
+    <div id="feedback" class="feedback"></div>
+    <button id="next-btn" class="next-btn" onclick="nextScreen()" style="display:none;">Далее к объяснению →</button>
+
+    <script>
+        let selectedOption = null;
+        
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedOption = this;
+            });
+        });
+        
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('Выбери вариант!');
+                return;
+            }
+            
+            const isCorrect = selectedOption.dataset.correct === 'true';
+            const feedback = document.getElementById('feedback');
+            
+            if (isCorrect) {
+                feedback.innerHTML = '✅ <strong>Молодец! Именно так.</strong><br>Перестановка персонала по SOS/GURU — ключ к зелёным KPI. А теперь разберём, почему это работает.';
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.innerHTML = '❌ <strong>Не совсем.</strong><br>Правильный ответ — 2: перестановка (+1 на кассу). Директор занят, скидки не решают проблему очереди.';
+                feedback.className = 'feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'block';
+            
+            // Подсветить правильный
+            document.querySelectorAll('.option').forEach(opt => {
+                if (opt.dataset.correct === 'true') opt.style.borderColor = '#32CD32';
+            });
+        }
+        
+        function nextScreen() {
+            // Здесь переход к следующему экрану модуля
+            alert('Переход к объяснению KPI...');
+        }
+    </script>
+</body>
+</html>
