@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструменты ДОС+ для Менеджера смены</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            font-weight: bold;
+        }
+        .icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        .title {
+            font-size: 1.2em;
+        }
+        .details {
+            padding: 0 20px 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            background: #fafafa;
+        }
+        .card.active .details {
+            max-height: 200px;
+            padding: 20px;
+        }
+        .description {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .usage {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b35;
+            font-size: 0.95em;
+        }
+        h1 {
+            text-align: center;
+            color: #ff6b35;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <h1>4 помощника Менеджера смены в ДОС+</h1>
+    <div class="container">
+        <div class="card" onclick="toggleCard(this)">
+            <div class="header">
+                <span class="icon">✅</span>
+                <span class="title">Чек-листы</span>
+            </div>
+            <div class="details">
+                <p class="description">Обязательные шаги открытия, закрытия и контроля смены. Помогают не пропустить ничего важного.</p>
+                <div class="usage">
+                    <strong>Применение:</strong> Проверяй по списку перед стартом смены и в пиковые моменты.
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="header">
+                <span class="icon">⏱️</span>
+                <span class="title">SOS</span>
+            </div>
+            <div class="details">
+                <p class="description">Монитор времени ожидания гостей. Красный сигнал — пора реагировать на очередь.</p>
+                <div class="usage">
+                    <strong>Применение:</strong> Если >3 мин — добавь кассиров или встань сам на сборку.
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="header">
+                <span class="icon">📈</span>
+                <span class="title">GURU</span>
+            </div>
+            <div class="details">
+                <p class="description">Графики выручки, списаний и KPI в реальном времени. Показывает, где проблема.</p>
+                <div class="usage">
+                    <strong>Применение:</strong> Если выручка ниже плана — проверь апселл или списания (цель: -20 мин отклонений).
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="header">
+                <span class="icon">🗺️</span>
+                <span class="title">Floor Plan</span>
+            </div>
+            <div class="details">
+                <p class="description">Схема расстановки персонала в зале и на кухне. Оптимизирует поток работы.</p>
+                <div class="usage">
+                    <strong>Применение:</strong> В пике переставь: +1 на кассу, следи за балансом (1–2 часа контроля).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
