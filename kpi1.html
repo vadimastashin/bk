@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вводный экран: KPI Менеджера смены</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            text-align: center;
+        }
+        .icon {
+            font-size: 8em;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        li {
+            background: rgba(255,255,255,0.2);
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        .next-btn {
+            background: white;
+            color: #FF6B35;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 30px;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="icon">📊</div>
+    <h1>Что такое KPI?</h1>
+    <p>В этом модуле ты узнаешь, как твоя работа влияет на успех ресторана!</p>
+    <ul>
+        <li>Что такое KPI и почему без них не обойтись</li>
+        <li>6 ключевых показателей, за которые ты отвечаешь</li>
+        <li>Как связаны твои действия и зелёные цифры в отчётах</li>
+        <li>Где искать данные и как быстро реагировать</li>
+    </ul>
+    <button class="next-btn">Продолжить →</button>
+</body>
+</html>
