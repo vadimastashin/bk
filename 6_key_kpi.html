@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>6 KPI Менеджера смены</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 40px 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Контейнер сетки */
+        .kpi-grid {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        /* Стиль карточки KPI */
+        .kpi-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 16px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center;
+            cursor: default;
+            position: relative;
+            border: 1px solid #e9edf2;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
+        }
+
+        /* Иконка инструмента */
+        .kpi-icon {
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* Название KPI */
+        .kpi-name {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        /* Краткая характеристика */
+        .kpi-desc {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        /* Стиль для подсказки (tooltip) */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed #94a3b8;
+            cursor: help;
+            font-size: 0.75rem;
+            margin-top: 12px;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 220px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 10px 12px;
+            position: absolute;
+            z-index: 10;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -110px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            line-height: 1.4;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            white-space: normal;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Маленькая стрелочка подсказки */
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #1e293b transparent transparent transparent;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1100px) {
+            .kpi-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            body {
+                padding: 20px 16px;
+            }
+        }
+
+        /* Декоративный заголовок */
+        .section-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: #0f172a;
+        }
+        .section-title p {
+            color: #475569;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 100%;">
+    <div class="section-title">
+        <h2>📊 6 ключевых KPI Менеджера смены</h2>
+        <p>Наведи курсор на показатель — узнаешь, как он влияет на прибыль ресторана</p>
+    </div>
+
+    <div class="kpi-grid">
+        <!-- 1. SOS / Скорость -->
+        <div class="kpi-card">
+            <div class="kpi-icon">⏱️</div>
+            <div class="kpi-name">SOS (скорость)</div>
+            <div class="kpi-desc">Время от оплаты до выдачи заказа. Цель: < 2,5 мин</div>
+            <div class="tooltip">
+                ❓ Как влияет на прибыль?
+                <span class="tooltip-text">Высокая скорость → довольные гости → повторные визиты → рост выручки. Долгое ожидание → уход гостей и потеря дохода.</span>
+            </div>
+        </div>
+
+        <!-- 2. MD Audit (стандарты) -->
+        <div class="kpi-card">
+            <div class="kpi-icon">✅</div>
+            <div class="kpi-name">MD Audit</div>
+            <div class="kpi-desc">Соблюдение стандартов чистоты и качества. Цель: ≥ 90%</div>
+            <div class="tooltip">
+                ❓ Как влияет на прибыль?
+                <span class="tooltip-text">Чистота и порядок → положительные отзывы → лояльность гостей → увеличение трафика. Нарушения → штрафы REV и отток гостей.</span>
+            </div>
+        </div>
+
+        <!-- 3. Жалобы гостей -->
+        <div class="kpi-card">
+            <div class="kpi-icon">🗣️</div>
+            <div class="kpi-name">Жалобы</div>
+            <div class="kpi-desc">Количество негативных отзывов на 1000 чеков</div>
+            <div class="tooltip">
+                ❓ Как влияет на прибыль?
+                <span class="tooltip-text">Минимум жалоб = высокий гостевой опыт. Гости возвращаются и рекомендуют ресторан → растёт выручка и снижаются расходы на привлечение новых клиентов.</span>
+            </div>
+        </div>
+
+        <!-- 4. Списания -->
+        <div class="kpi-card">
+            <div class="kpi-icon">🗑️</div>
+            <div class="kpi-name">Списания</div>
+            <div class="kpi-desc">Потери продуктов (просрочка, брак, перепроизводство)</div>
+            <div class="tooltip">
+                ❓ Как влияет на прибыль?
+                <span class="tooltip-text">Чем меньше списаний, тем выше чистая прибыль (EBITDA). Каждый испорченный продукт — прямые убытки. Контроль списаний сохраняет ресурсы.</span>
+            </div>
+        </div>
+
+        <!-- 5. Выручка (GURU) -->
+        <div class="kpi-card">
+            <div class="kpi-icon">📈</div>
+            <div class="kpi-name">Выручка</div>
+            <div class="kpi-desc">Выполнение плана продаж (средний чек × трафик)</div>
+            <div class="tooltip">
+                ❓ Как влияет на прибыль?
+                <span class="tooltip-text">Главный драйвер прибыли. Перевыполнение плана → рост маржинальности. Провал плана → недовыполнение бюджета ресторана.</span>
+            </div>
+        </div>
+
+        <!-- 6. График / Расстановка (Floor Plan) -->
+        <div class="kpi-card">
+            <div class="kpi-icon">👥</div>
+            <div class="kpi-name">Расстановка</div>
+            <div class="kpi-desc">Соответствие схемы Floor Plan фактическому потоку гостей</div>
+            <div class="tooltip">
+                ❓ Как влияет на прибыль?
+                <span class="tooltip-text">Правильная расстановка ускоряет обслуживание, повышает ITPH и снижает переработки. Ошибки → падение SOS, потеря выручки, демотивация команды.</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
